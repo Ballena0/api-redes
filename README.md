@@ -30,12 +30,11 @@ _Saludo formateado y ordenado_
 Mediante un cliente o [Postman](https://www.getpostman.com/) ingresar como cuerpo los siguientes valores:
 
 
-*Apellido paterno
-*Apellido materno
-*Nombres(todos)
-*Sexo: Bool
-  *True == F
-  *False == M
-
+1. Apellido paterno
+2. Apellido materno
+3. Nombres(todos)
+4. Sexo (bool)
+   * True == F
+   * False == M  
 
 
