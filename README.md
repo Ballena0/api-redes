@@ -20,13 +20,16 @@ _Add aplication to path_
 ## Run
 ``` flask run ``` 
 
-###Usage
+
+#### Usage
 
 _Validar digito verificador RUT_
-http://127.0.0.1/rut/_[tu rut sin digito verificador]_
+http://127.0.0.1/rut/[tu rut sin digito verificador]
 
 _Saludo formateado y ordenado_
 Mediante un cliente o [Postman](https://www.getpostman.com/) ingresar como cuerpo los siguientes valores:
+
+
 *Apellido paterno
 *Apellido materno
 *Nombres(todos)
