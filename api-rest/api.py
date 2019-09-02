@@ -4,7 +4,6 @@ from flask import Flask, escape, request
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-
 @app.route('/')
 def say_hi():
     return 'API funcionando'
@@ -19,7 +18,6 @@ def digito_verificador(rut):
         mod = 'k'
     return 'el digito verificador es ' + str(mod)
 
-
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():
     if request.method == 'POST':
@@ -27,20 +25,12 @@ def generar_saludo():
         pat = request.form.get('paterno')
         mat = request.form.get('materno')
         nombreCompleto = nom + ' ' + pat + ' ' + mat + ' '
+        nomComProp = nombreCompleto.title()
         sexo = request.form.get('sexo')
-        if (sexo == True):
-            sexo = 'F'
+        if (int(sexo) == 1):
+            sex = 'Sra. '
         else:
-            sexo = 'M'
-
-        bocadillo = ''
-        if (sexo == 'F'):
-            bocadillo = 'Sra. '
-        else:
-            bocadillo = 'Sr. '
-        return bocadillo + nombreCompleto + 'sexo: ' + sexo        
-
-##propercase
-## sr/sra nombre_pat_mat
+            sex = 'Sr. '
+        return sex + nomComProp      
 
 app.run()
