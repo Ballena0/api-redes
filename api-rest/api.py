@@ -16,7 +16,12 @@ def digito_verificador(rut):
     mod = (-s) % 11
     if (mod == 10):
         mod = 'k'
-    return 'el digito verificador es ' + str(mod)
+    return {
+        "rut": rut,
+        "digito verificador":mod
+
+    }
+    # 'el digito verificador es ' + str(mod)
 
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():
@@ -31,6 +36,10 @@ def generar_saludo():
             sex = 'Sra. '
         else:
             sex = 'Sr. '
-        return sex + nomComProp      
+        return {
+            "Sexo": sex,
+            "Nombre completo": nomComProp
+        }
+        # sex + nomComProp      
 
 app.run()
