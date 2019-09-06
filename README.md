@@ -24,7 +24,7 @@ _Add aplication to path_
 #### Usage
 
 _Validar digito verificador RUT_
-http://127.0.0.1/rut/[tu rut sin digito verificador]
+http://127.0.0.1/rut/"tu rut sin digito verificador"
 
 _Saludo formateado y ordenado_
 Mediante un cliente o [Postman](https://www.getpostman.com/) ingresar como cuerpo los siguientes valores:
