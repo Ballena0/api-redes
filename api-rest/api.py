@@ -8,7 +8,7 @@ app.config["DEBUG"] = True
 def say_hi():
     return 'API funcionando'
 
-@app.route('/rut/<int:rut>')
+@app.route('/rut/<rut>')
 def digito_verificador(rut):
     reversed_digits = map(int, reversed(str(rut)))
     factors = cycle(range(2, 8))
@@ -18,10 +18,8 @@ def digito_verificador(rut):
         mod = 'k'
     return {
         "rut": rut,
-        "digito verificador":mod
-
+        "digito verificador": mod
     }
-    # 'el digito verificador es ' + str(mod)
 
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():
@@ -40,6 +38,6 @@ def generar_saludo():
             "Sexo": sex,
             "Nombre completo": nomComProp
         }
-        # sex + nomComProp      
+             
 
 app.run()
