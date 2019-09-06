@@ -8,7 +8,7 @@ app.config["DEBUG"] = True
 def say_hi():
     return 'API funcionando'
 
-@app.route('/rut/<rut>')
+@app.route('/rut/<int:rut>')
 def digito_verificador(rut):
     reversed_digits = map(int, reversed(str(rut)))
     factors = cycle(range(2, 8))
