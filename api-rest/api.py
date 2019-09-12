@@ -10,16 +10,19 @@ def say_hi():
 
 @app.route('/rut/<int:rut>')
 def digito_verificador(rut):
-    reversed_digits = map(int, reversed(str(rut)))
-    factors = cycle(range(2, 8))
-    s = sum(d * f for d, f in zip(reversed_digits, factors))
-    mod = (-s) % 11
-    if (mod == 10):
-        mod = 'k'
-    return {
-        "rut": rut,
-        "digito verificador": mod
-    }
+    if (rut < 1000000):
+        return {'response':'Rut no existe'}
+    else:
+        reversed_digits = map(int, reversed(str(rut)))
+        factors = cycle(range(2, 8))
+        s = sum(d * f for d, f in zip(reversed_digits, factors))
+        mod = (-s) % 11
+        if (mod == 10):
+            mod = 'k'
+        return {
+            "rut": rut,
+            "digito verificador": mod
+        }
 
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():
