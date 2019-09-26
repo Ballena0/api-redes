@@ -22,29 +22,23 @@ class digitoService(ServiceBase):
             mod = (-s) % 11
             if (mod == 10):
                 mod = 'k'
-            return {
-                "rut": rut,
-                "digito verificador": mod
-            }
+            yield (
+                {
+                    rut + ' ' + mod
+                }
+            )
+
 
 class nompropService(ServiceBase):
     @rpc(Unicode, Unicode, Unicode, Unicode,_returns = Iterable(Unicode))
-    def generar_saludo(ctx, nom, pat, mat, sexo):
-        nom = request.form.get('nombre')
-        pat = request.form.get('paterno')
-        mat = request.form.get('materno')
-        
+    def generar_saludo(ctx, nom, pat, mat, sexo):        
         nombreCompleto = nom + ' ' + pat + ' ' + mat + ' '
         nomComProp = nombreCompleto.title()
-        sexo = request.form.get('sexo')
         if (int(sexo) == 1):
             sex = 'Sra. '
         else:
             sex = 'Sr. '
-        return {
-            "Sexo": sex,
-            "Nombre completo": nomComProp
-        }
+        yield (sex + ' ' + nomComPropssss )
 
 class helloService(ServiceBase):
     @rpc(Unicode, Integer, _returns=Iterable(Unicode))
