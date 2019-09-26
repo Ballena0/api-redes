@@ -24,6 +24,10 @@ def digito_verificador(rut):
             "digito verificador": mod
         }
 
+#split string
+def split_str(s):
+      return [ch for ch in s]
+
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():
     if request.method == 'POST':
@@ -41,6 +45,7 @@ def generar_saludo():
             "Sexo": sex,
             "Nombre completo": nomComProp
         }
-             
+
 
 app.run()
+
