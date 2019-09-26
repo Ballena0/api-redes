@@ -1,4 +1,5 @@
 import logging
+from itertools import cycle
 
 logging.basicConfig(level=logging.DEBUG)
 from spyne import Application, rpc, ServiceBase, \
@@ -11,22 +12,15 @@ from spyne.protocol.soap import Soap11
 from spyne.model.primitive import String
 
 class digitoService(ServiceBase):
-    @rpc(Unicode, Integer, _returns = Iterable(Unicode))
+    @rpc(Unicode, Unicode, _returns = Iterable(Unicode))
     def digito_verificador(ctx, rut, times):
-        if (rut < 1000000):
-            yield ({'response':'Rut no existe'})
-        else:
-            reversed_digits = map(int, reversed(str(rut)))
-            factors = cycle(range(2, 8))
-            s = sum(d * f for d, f in zip(reversed_digits, factors))
-            mod = (-s) % 11
-            if (mod == 10):
-                mod = 'k'
-            yield (
-                {
-                    rut + ' ' + mod
-                }
-            )
+        reversed_digits = map(int, reversed(str(rut)))
+        factors = cycle(range(2, 8))
+        s = sum(d * f for d, f in zip(reversed_digits, factors))
+        mod = (-s) % 11
+        if (mod == 10):
+            mod = 'k'
+        yield ('Para el rut ' + str(rut) + ' ' + 'el digito verificador es '+ str(mod))
 
 
 class nompropService(ServiceBase):
@@ -38,7 +32,7 @@ class nompropService(ServiceBase):
             sex = 'Sra. '
         else:
             sex = 'Sr. '
-        yield (sex + ' ' + nomComPropssss )
+        yield (sex + ' ' + nomComProp )
 
 class helloService(ServiceBase):
     @rpc(Unicode, Integer, _returns=Iterable(Unicode))
