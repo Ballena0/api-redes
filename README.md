@@ -34,7 +34,7 @@ Mediante un cliente o [Postman](https://www.getpostman.com/) ingresar como cuerp
 2. Apellido materno
 3. Nombres(todos)
 4. Sexo (bool)
-   * True == F
-   * False == M  
+   * True/1 == F
+   * False/0 == M  
 
 
