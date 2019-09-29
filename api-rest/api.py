@@ -43,7 +43,8 @@ def generar_saludo():
             sex = 'Sr. '
         return {
             "Sexo": sex,
-            "Nombre completo": nomComProp
+            "Nombre completo": nomComProp,
+            "Mensaje": "Saludos " + sex + nomComProp
         }
 
 
