@@ -47,7 +47,7 @@ application = Application(
         nompropService
     ],
     tns = 'spyne.examples.hello.soap',
-    in_protocol = HttpRpc(validator='soft'),
+    in_protocol = Soap11(),
     out_protocol = Soap11()
 )
 
