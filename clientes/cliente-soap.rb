@@ -1,6 +1,9 @@
 require 'savon'
 cliente = Savon.client(wsdl: "http://127.0.0.1:8000/?wsdl", pretty_print_xml: true)
+
+puts cliente.operations
 puts "Bienvenido al cliente soap \n 1)verificador rut \n 2)saludo \n 0)salir"
+
 opcion = gets.chomp.to_i
 case opcion
 when 1
@@ -8,7 +11,6 @@ when 1
     message = {rut: '#{rut}'}
     response = cliente.call(:digito_verificador,message:message)
     puts response.doc
-#puts cliente.operations
 when 2
     puts "Ingrese nombre"
     nombre = gets.chomp
@@ -20,6 +22,7 @@ when 2
     sexos = gets.chomp.to_i
     saludo = {nom: nombre, pat: paterno, mat: materno, sexo: sexos}
     respuesta = cliente.call(:generar_saludo, message:saludo)
+    puts respuesta.doc
 when 0
     puts "Adios"
 end
