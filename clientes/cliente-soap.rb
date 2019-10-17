@@ -7,8 +7,9 @@ puts "Bienvenido al cliente soap \n 1)verificador rut \n 2)saludo \n 0)salir"
 opcion = gets.chomp.to_i
 case opcion
 when 1
+    puts 'Ingrese rut: '
     rut = gets.chomp.to_i
-    message = {rut: '#{rut}'}
+    message = {rut: rut}
     response = cliente.call(:digito_verificador,message:message)
     puts response.doc
 when 2
