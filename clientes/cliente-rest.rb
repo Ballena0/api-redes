@@ -4,7 +4,7 @@ puts ("Bienvenido a cliente de servicio REST \n 1)Digito verificador RUT \n 2)Sa
 opcion = gets.chomp.to_i
 case opcion 
 when 1
-    puts "Ingrese valor del rut sin digito verificador"
+    puts "Ingrese valor del rut por ej(6666666-6)"
     rut = gets.chomp
     newrut = "http://127.0.0.1:5000/rut/#{rut}"
     responseRut = HTTParty.get(newrut)

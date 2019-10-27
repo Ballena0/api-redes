@@ -8,25 +8,31 @@ app.config["DEBUG"] = True
 def say_hi():
     return 'API funcionando'
 
-@app.route('/rut/<int:rut>')
+@app.route('/rut/<rut>')
 def digito_verificador(rut):
-    if (rut < 1000000):
-        return {'response':'Rut no existe'}
-    else:
-        reversed_digits = map(int, reversed(str(rut)))
-        factors = cycle(range(2, 8))
-        s = sum(d * f for d, f in zip(reversed_digits, factors))
-        mod = (-s) % 11
-        if (mod == 10):
-            mod = 'k'
+    n_rut = rut.split("-")
+    reversed_digits = map(int, reversed(str(n_rut[0])))
+    factors = cycle(range(2, 8))
+    s = sum(d * f for d, f in zip(reversed_digits, factors))
+    mod = (-s) % 11
+    if (mod == 10):
+        mod = 'k'
+    if (mod == 11):
+        mod = 0
+    if (str(mod) == str(n_rut[1])):
         return {
             "rut": rut,
-            "digito verificador": mod
+            "digito verificador": mod,
+            "mensaje": "rut correcto"
+        }
+    else:
+        return {
+            "mensaje": "rut no coincide con el digito verificador",
+            "ingresado": str(n_rut[1]),
+            "correcto": mod
         }
 
-#split string
-def split_str(s):
-      return [ch for ch in s]
+
 
 @app.route('/saludo', methods=['POST'])
 def generar_saludo():

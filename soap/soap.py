@@ -14,13 +14,19 @@ from spyne.model.primitive import String
 class digitoService(ServiceBase):
     @rpc(Unicode, Unicode, _returns = Iterable(Unicode))
     def digito_verificador(ctx, rut, times):
-        reversed_digits = map(int, reversed(str(rut)))
+        n_rut = rut.split('-')
+        reversed_digits = map(int, reversed(str(n_rut[0])))
         factors = cycle(range(2, 8))
         s = sum(d * f for d, f in zip(reversed_digits, factors))
         mod = (-s) % 11
         if (mod == 10):
             mod = 'k'
-        yield ('Para el rut ' + str(rut) + ' ' + 'el digito verificador es '+ str(mod))
+        if (mod == 11):
+            mod = 0
+        if (str(mod) == n_rut[1]):
+            yield ('Para el rut ' + str(rut) + ' ' + 'el digito verificador es '+ str(mod))
+        else:
+            yield('dv ingresado '+ str(n_rut[1]) + ' el dv correcto es '+ str(mod))
 
 
 class nompropService(ServiceBase):
